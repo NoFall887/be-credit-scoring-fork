@@ -1,4 +1,4 @@
-## Run dengan Docker
+## Run with Skaffold and Docker
 
 Clone the project
 
@@ -8,29 +8,25 @@ Clone the project
 
 Go to the project directory
 
-```bash
-  cd be-credit-scoring
-
-```
-
-Run Docker Compose
+Run to automatically build and deploy your application when your code changes.
 
 ```bash
-  docker-compose up
+  skaffold dev
 ```
 
-### Jika melakukan perubahan
+## Change your host with custom host
 
-Exit Docker Compose
+1. Go to host file
 
 ```bash
-  docker-compose down
+C:/windows/system32/drivers/etc/hosts
 ```
 
-atau jika menggunakan docker desktop, cukup delete container yang terdapat perubahan. Kemudian
-
-Rebuild Docker Compose
+2. Add new row in the last section
 
 ```bash
-  docker-compose up --build
+127.0.0.1 credit-scoring.dev"
 ```
+
+3. Open it in your browser
+4. If blocked by"NOT SECURE" chrome, click anywhere iniside this page. type "THISISUNSAFE". It will automatically open the not secure page
