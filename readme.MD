@@ -30,3 +30,29 @@ C:/windows/system32/drivers/etc/hosts
 
 3. Open it in your browser
 4. If blocked by"NOT SECURE" chrome, click anywhere iniside this page. type "THISISUNSAFE". It will automatically open the not secure page
+
+## Updating common services
+
+1. After updating common, move to common directory
+
+```bash
+cd common
+```
+
+2. Run
+
+```bash
+npm run pub
+```
+
+3. Move to another services directory
+
+```bash
+cd ../<your service name>
+```
+
+4. update common module or package
+
+```bash
+npm update
+```

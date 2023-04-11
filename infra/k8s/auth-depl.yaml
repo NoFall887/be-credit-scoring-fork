@@ -15,6 +15,15 @@ spec:
       containers:
         - name: auth
           image: credit-scoring/auth
+          env:
+            - name: MONGO_URI
+              value: "mongodb+srv://credit-scoring-admin:admin@cluster-backend.gp6s4fc.mongodb.net/credit-scoring"
+            - name: JWT_KEY
+              value: "rahasiabgtanjir"
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: jwt-secret
+              #     key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
