@@ -1,16 +1,16 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface IUser extends Document {
-  fullname: string;
+interface IAdmin extends Document {
+  name: string;
   email: string;
   password: string;
   avatar?: string;
   roleId: string;
 }
 
-const UserSchema: Schema = new Schema(
+const AdminSchema: Schema = new Schema(
   {
-    fullname: {
+    name: {
       type: String,
       required: true,
     },
@@ -39,6 +39,6 @@ const UserSchema: Schema = new Schema(
   }
 );
 
-const User = mongoose.model<IUser>("users", UserSchema);
+const Admin = mongoose.model<IAdmin>("admins", AdminSchema);
 
-export default User;
+export default Admin;

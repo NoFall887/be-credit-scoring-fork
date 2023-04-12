@@ -1,4 +1,4 @@
-import UserSession from "../models/userSession.model";
+import AdminSession from "../models/adminSession.model";
 import { StatusCodes as status } from "http-status-codes";
 import {
   ApiResponseInterface,
@@ -14,7 +14,7 @@ const signout = async (user: JwtInterface): Promise<ApiResponseInterface> => {
   if (isEmpty(user))
     throw new HttpExceptionBadRequest("Empty data. Please fill the form");
 
-  const findSession = await UserSession.findOne({ id: user.user_id });
+  const findSession = await AdminSession.findOne({ id: user.user_id });
   if (!findSession) throw new HttpExceptionNotFound("Session not found");
 
   findSession.status = "EXPIRED";

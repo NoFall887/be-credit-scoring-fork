@@ -1,6 +1,6 @@
-import User from "../models/user.model";
-import UserRole from "../models/userRole.model";
-import UserSession from "../models/userSession.model";
+import Admin from "../models/admin.model";
+import AdminRole from "../models/adminRole.model";
+import UserSession from "../models/adminSession.model";
 import { StatusCodes as status } from "http-status-codes";
 import {
   ApiResponseInterface,
@@ -22,10 +22,10 @@ const signin = async (
   if (isEmpty(userData))
     throw new HttpExceptionBadRequest("Empty data. Please fill the form");
 
-  const findUser = await User.findOne({ email: userData.email });
+  const findUser = await Admin.findOne({ email: userData.email });
   if (!findUser) throw new HttpExceptionNotFound("Email not found");
 
-  const userRole = await UserRole.findOne({ user_id: findUser.id });
+  const userRole = await AdminRole.findOne({ admin_id: findUser.id });
   if (!userRole) throw new HttpExceptionNotFound("User role not found");
 
   const isMatch = await PasswordHasher.comparePassword(
@@ -35,21 +35,21 @@ const signin = async (
   if (!isMatch) throw new HttpExceptionForbidden("Password does not match");
 
   // Generate JWT
-  const token = await generateToken({
-    user_id: userRole.user_id,
+  const token = generateToken({
+    user_id: userRole.admin_id,
     role_id: userRole.role_id,
   });
 
   await UserSession.findOneAndUpdate(
     {
-      user_id: userRole.user_id,
+      admin_id: userRole.admin_id,
       status: "ACTIVE",
     },
     { status: "EXPIRED" }
   );
 
   const sessionPayload = {
-    user_id: findUser.id,
+    admin_id: findUser.id,
     status: "ACTIVE",
     user_agent: userAgent,
     token: token,

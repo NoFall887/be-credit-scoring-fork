@@ -1,6 +1,5 @@
 import express from "express";
 import "express-async-errors";
-import session from "express-session";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { AuthRouter } from "./auth.route";
@@ -22,9 +21,9 @@ app.use(
 //   next();
 // });
 
-app.use("/api/user", AuthRouter);
+app.use("/api/auth", AuthRouter);
 
-app.get("/api/user", (req, res) => {
+app.get("/api/auth", (req, res) => {
   res.status(200).json({
     code: 200,
     status: "OK",

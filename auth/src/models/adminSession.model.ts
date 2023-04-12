@@ -1,16 +1,16 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface IUserSession extends Document {
-  user_id: string;
+interface IAdminSession extends Document {
+  admin_id: string;
   status: string;
   user_agent: string;
   token: string;
 }
 
-const UserSessionSchema: Schema = new Schema({
-  user_id: {
+const AdminSessionSchema: Schema = new Schema({
+  admin_id: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "admins",
     required: true,
   },
   status: {
@@ -27,9 +27,9 @@ const UserSessionSchema: Schema = new Schema({
   },
 });
 
-const UserSession = mongoose.model<IUserSession>(
-  "user_sessions",
-  UserSessionSchema
+const AdminSession = mongoose.model<IAdminSession>(
+  "admin_sessions",
+  AdminSessionSchema
 );
 
-export default UserSession;
+export default AdminSession;

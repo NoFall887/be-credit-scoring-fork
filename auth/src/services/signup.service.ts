@@ -1,6 +1,6 @@
-import User from "../models/user.model";
+import Admin from "../models/admin.model";
 import Role from "../models/role.model";
-import UserRole from "../models/userRole.model";
+import AdminRole from "../models/adminRole.model";
 import { StatusCodes as status } from "http-status-codes";
 import { RegisterUserDto } from "../dtos/auth.dto";
 import PasswordHasher from "../utils/passwordHasher.util";
@@ -22,7 +22,7 @@ const signup = async (
     );
 
   // is email already registerd
-  const findUser = await User.findOne({ email: userData.email });
+  const findUser = await Admin.findOne({ email: userData.email });
   if (findUser) throw new HttpExceptionForbidden("Email already registered");
 
   // hashing pw
@@ -34,19 +34,19 @@ const signup = async (
     password: hashed,
   };
 
-  const role = await Role.findOne({ name: "USER" });
-  if (!role) throw new HttpExceptionNotFound("Role 'USER' not found");
+  const role = await Role.findOne({ name: "ADMIN" });
+  if (!role) throw new HttpExceptionNotFound("Role 'ADMIN' not found");
 
   // create user to db
-  const newUser = await User.create(userPayload);
+  const newUser = await Admin.create(userPayload);
 
   const userRolePayload = {
-    user_id: newUser.id,
+    admin_id: newUser.id,
     role_id: role?.id,
   };
 
   // asign user and role to db
-  await UserRole.create(userRolePayload);
+  await AdminRole.create(userRolePayload);
 
   return apiResponse(
     status.CREATED,

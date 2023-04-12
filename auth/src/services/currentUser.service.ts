@@ -1,6 +1,5 @@
-import User from "../models/user.model";
+import Admin from "../models/admin.model";
 import Role from "../models/role.model";
-import UserRole from "../models/userRole.model";
 import { StatusCodes as status } from "http-status-codes";
 import {
   ApiResponseInterface,
@@ -18,7 +17,7 @@ const currentUser = async (
   if (isEmpty(user))
     throw new HttpExceptionBadRequest("Empty data. Please fill the form");
 
-  const findUser = await User.findOne({ id: user.user_id });
+  const findUser = await Admin.findOne({ id: user.user_id });
   const findRole = await Role.findOne({ id: user.role_id });
   if (!findUser || !findRole)
     throw new HttpExceptionNotFound("User or Role not found");
