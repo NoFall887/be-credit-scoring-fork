@@ -18,6 +18,21 @@ const AdminRoleSchema: Schema = new Schema({
   },
 });
 
+AdminRoleSchema.virtual("admins", {
+  ref: "admins",
+  localField: "admin_id",
+  foreignField: "_id",
+  justOne: true,
+  options: { virtual: true },
+});
+AdminRoleSchema.virtual("roles", {
+  ref: "roles",
+  localField: "role_id",
+  foreignField: "_id",
+  justOne: true,
+  options: { virtual: true },
+});
+
 const AdminRole = mongoose.model<IAdminRole>("admin_roles", AdminRoleSchema);
 
 export default AdminRole;

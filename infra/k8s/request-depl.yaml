@@ -1,35 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-depl
+  name: request-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: request
   template:
     metadata:
       labels:
-        app: user
+        app: request
     spec:
       containers:
-        - name: user
-          image: credit-scoring/user
+        - name: request
+          image: credit-scoring/request
           env:
             - name: MONGO_URI
               value: "mongodb+srv://credit-scoring-admin:admin@cluster-backend.gp6s4fc.mongodb.net/credit-scoring"
-            - name: JWT_KEY
-              value: "rahasiabgtanjir"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-srv
+  name: request-srv
 spec:
   selector:
-    app: user
+    app: request
   ports:
-    - name: user
+    - name: request
       protocol: TCP
       port: 3000
       targetPort: 3000
