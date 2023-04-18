@@ -8,33 +8,17 @@ interface IUser extends Document {
   roleId: string;
 }
 
-const UserSchema: Schema = new Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    nik: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    document_id: {
-      type: Schema.Types.ObjectId,
-      required: true,
-    },
+const UserSchema: Schema = new Schema({
+  name: {
+    type: String,
+    required: true,
   },
-  {
-    toJSON: {
-      transform(doc, ret) {
-        ret.id = ret._id;
-        delete ret._id;
-        delete ret.__v;
-      },
-    },
-  }
-);
+  document_id: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
+});
 
-const User = mongoose.model<IUser>("userss", UserSchema);
+const User = mongoose.model<IUser>("users", UserSchema);
 
 export default User;

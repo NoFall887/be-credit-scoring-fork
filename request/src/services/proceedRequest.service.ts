@@ -10,7 +10,7 @@ import {
 } from "common-credit-scoring";
 
 const proceedRequest = async (
-  selectedUserRequest
+  selectedUserRequest: string
 ): Promise<ApiResponseInterface> => {
   //   check data from request
   if (!selectedUserRequest)

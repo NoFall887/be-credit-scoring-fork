@@ -18,6 +18,8 @@ spec:
           env:
             - name: MONGO_URI
               value: "mongodb+srv://credit-scoring-admin:admin@cluster-backend.gp6s4fc.mongodb.net/credit-scoring"
+            - name: JWT_KEY
+              value: "rahasiabgtanjir"
 ---
 apiVersion: v1
 kind: Service
