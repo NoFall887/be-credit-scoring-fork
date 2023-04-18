@@ -9,29 +9,14 @@ import {
   isEmpty,
 } from "common-credit-scoring";
 
-interface UserRequest {
-    user_id: string;
-    feature_id: any;
-    status: string;
-  }
-
 const chooseFeatures = async (
-  selectedFeatures
+  selectedFeatures: string
 ): Promise<ApiResponseInterface> => {
   //   check data from request
   if (isEmpty(selectedFeatures))
     throw new HttpExceptionBadRequest("Empty data. Please fill the form");
 
-    // query untuk get all users yang belum terdaftar
-    const requested = []
-    selectedFeatures.forEach(feat => {
-        const newUserReq = {
-            user_id: "user_id" ,
-            feature_id: feat,
-            status: "PROCESS"
-        }
-    });
-    
+  // query untuk get all users yang belum terdaftar
 
   return apiResponse(status.OK, "SUCCESS", "");
 };

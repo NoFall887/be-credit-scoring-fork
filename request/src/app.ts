@@ -15,9 +15,9 @@ app.use(
   })
 );
 
-app.use("/api/request", requestRouter);
+app.use("/api/ai-scores/request", requestRouter);
 
-app.get("/api/request", (req, res) => {
+app.get("/api/ai-scores/request", (req, res) => {
   res.status(200).json({
     code: 200,
     status: "OK",

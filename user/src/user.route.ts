@@ -6,4 +6,4 @@ const userController = new UserController();
 
 const router = express.Router();
 
-export { router as AuthRouter };
+export { router as UserRouter };

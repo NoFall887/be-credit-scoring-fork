@@ -25,6 +25,7 @@ AdminRoleSchema.virtual("admins", {
   justOne: true,
   options: { virtual: true },
 });
+
 AdminRoleSchema.virtual("roles", {
   ref: "roles",
   localField: "role_id",
