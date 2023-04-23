@@ -35,6 +35,9 @@ const UserDocumentSchema: Schema = new Schema({
     surat_nomor_akta_notaris: {
         type: String,
     },
+    surat_keterangan_domisili_usaha: {
+        type: String,
+    },
     npwp: {
         type: String,
     },

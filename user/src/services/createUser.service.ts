@@ -1,20 +1,19 @@
 import User from "models/user.model";
 import { StatusCodes as status } from "http-status-codes";
-import {
-  ApiResponseInterface,
-  HttpExceptionBadRequest,
-  apiResponse,
-  isEmpty,
-} from "common-credit-scoring";
+import { ApiResponseInterface, apiResponse } from "common-credit-scoring";
+import UserDocument from "models/document.model";
+import { IdentityScoringDocsUrlsInt } from "../../interfaces/user.interface";
 
-const createUser = async (): Promise<ApiResponseInterface> => {
-  //   check data from request
-  //   if ()
-  //     throw new HttpExceptionBadRequest("Empty data. Please fill the form");
+const createUser = async (imageUrls: IdentityScoringDocsUrlsInt): Promise<ApiResponseInterface> => {
+  const user = await User.create();
+  const userId = user[0].id as string;
 
-  // query untuk get all users yang belum terdaftar
+  await UserDocument.create({
+    user_id: userId,
+    ...imageUrls,
+  });
 
-  return apiResponse(status.OK, "SUCCESS", "");
+  return apiResponse(status.OK, "SUCCESS", "User created!");
 };
 
 export default createUser;
