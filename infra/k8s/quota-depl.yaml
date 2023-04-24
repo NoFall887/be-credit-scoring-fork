@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quota-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quota
+  template:
+    metadata:
+      labels:
+        app: quota
+    spec:
+      containers:
+        - name: quota
+          image: credit-scoring/quotas
+          env:
+            - name: MONGO_URI
+              value: "mongodb+srv://credit-scoring-admin:admin@cluster-backend.gp6s4fc.mongodb.net/credit-scoring"
+            - name: JWT_KEY
+              value: "rahasiabgtanjir"
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: jwt-secret
+              #     key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quota-srv
+spec:
+  selector:
+    app: quota
+  ports:
+    - name: quota
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

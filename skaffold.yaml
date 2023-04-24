@@ -29,6 +29,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: credit-scoring/quota
+      context: quota
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
 deploy:
   kubectl:
     manifests:

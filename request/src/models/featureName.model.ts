@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 interface IFeature extends Document {
   name: string;
   number: number;
+  is_primary: boolean;
 }
 
 const FeatureSchema: Schema = new Schema({
@@ -12,6 +13,10 @@ const FeatureSchema: Schema = new Schema({
   },
   number: {
     type: Number,
+    required: true,
+  },
+  is_primary: {
+    type: Boolean,
     required: true,
   },
 });

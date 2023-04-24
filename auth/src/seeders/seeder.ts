@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URI);
 // Define an array of Role data to seed
 const rolesData = [
   { id: "1", name: "ADMIN" },
-  { id: "2", name: "USER" },
+  { id: "2", name: "HR" },
   { id: "3", name: "GUEST" },
 ];
 
