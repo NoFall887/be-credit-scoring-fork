@@ -3,7 +3,7 @@ import Role from "../models/role.model";
 import AdminRole from "../models/adminRole.model";
 import { StatusCodes as status } from "http-status-codes";
 import { RegisterUserDto } from "../dtos/auth.dto";
-import PasswordHasher from "../utils/passwordHasher.util";
+import { hashPassword } from "../utils/passwordHasher.util";
 import {
   ApiResponseInterface,
   HttpExceptionBadRequest,
@@ -26,7 +26,7 @@ const signup = async (
   if (findUser) throw new HttpExceptionForbidden("Email already registered");
 
   // hashing pw
-  const hashed = await PasswordHasher.hashPassword(userData.password);
+  const hashed = await hashPassword(userData.password);
 
   const userPayload = {
     email: userData.email,

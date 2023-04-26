@@ -17,7 +17,8 @@ interface UserIDocument extends Document {
 
 const UserDocumentSchema: Schema = new Schema({
   user_id: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "users",
     required: true,
   },
   ktp: {

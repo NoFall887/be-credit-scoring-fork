@@ -15,6 +15,7 @@ const UserSchema: Schema = new Schema({
   },
   document_id: {
     type: Schema.Types.ObjectId,
+    ref: "documents",
     required: true,
   },
 });

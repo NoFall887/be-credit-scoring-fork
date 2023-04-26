@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 import { app } from "./app";
 import { HttpExceptionBadRequest } from "common-credit-scoring";
-// import { roleSeeder } from "./seeders/feature.seeder";
+import { featureSeeder } from "./seeders/feature.seeder";
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -15,7 +15,7 @@ const start = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
 
-    // await roleSeeder();
+    await featureSeeder();
 
     console.info("Connected to MongoDb");
   } catch (err) {

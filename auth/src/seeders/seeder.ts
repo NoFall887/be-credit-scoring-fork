@@ -9,9 +9,15 @@ mongoose.connect(process.env.MONGO_URI);
 
 // Define an array of Role data to seed
 const rolesData = [
-  { id: "1", name: "ADMIN" },
-  { id: "2", name: "HR" },
-  { id: "3", name: "GUEST" },
+  {
+    _id: new mongoose.Types.ObjectId("64467970b3e320db6f805201"),
+    name: "ADMIN",
+  },
+  { _id: new mongoose.Types.ObjectId("64467970b3e320db6f805202"), name: "HR" },
+  {
+    _id: new mongoose.Types.ObjectId("64467970b3e320db6f805203"),
+    name: "GUEST",
+  },
 ];
 
 // Seed the Role data to the database

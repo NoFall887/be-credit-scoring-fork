@@ -10,15 +10,15 @@ mongoose.connect(process.env.MONGO_URI);
 const usersData = [
   {
     admin_id: new mongoose.Types.ObjectId("644667cdc80389bc14956b01"),
-    role_id: new mongoose.Types.ObjectId("1"),
+    role_id: new mongoose.Types.ObjectId("64467970b3e320db6f805201"),
   },
   {
     admin_id: new mongoose.Types.ObjectId("644667cdc80389bc14956b02"),
-    role_id: new mongoose.Types.ObjectId("2"),
+    role_id: new mongoose.Types.ObjectId("64467970b3e320db6f805202"),
   },
   {
     admin_id: new mongoose.Types.ObjectId("644667cdc80389bc14956b03"),
-    role_id: new mongoose.Types.ObjectId("3"),
+    role_id: new mongoose.Types.ObjectId("64467970b3e320db6f805203"),
   },
 ];
 
@@ -27,16 +27,16 @@ export const adminRoleSeeder = async () => {
   try {
     const user = await Admin.findOne({ name: "" });
     if (user) {
-      return console.log("User already seeded");
+      return console.log("Admin already seeded");
     } else {
       // Loop through the users data array and create new user documents
       for (const userData of usersData) {
         const user = new Admin(userData);
         await user.save(); // Save each user document to the database
       }
-      console.log("Users seeded successfully.");
+      console.log("Admin seeded successfully.");
     }
   } catch (err) {
-    console.error("Error seeding users:", err);
+    console.error("Error seeding Admin Role:", err);
   }
 };

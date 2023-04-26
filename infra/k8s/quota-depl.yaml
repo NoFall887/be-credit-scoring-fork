@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: quota
-          image: credit-scoring/quotas
+          image: credit-scoring/quota
           env:
             - name: MONGO_URI
               value: "mongodb+srv://credit-scoring-admin:admin@cluster-backend.gp6s4fc.mongodb.net/credit-scoring"
