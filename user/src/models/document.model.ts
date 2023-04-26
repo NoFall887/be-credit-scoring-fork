@@ -36,6 +36,9 @@ const UserDocumentSchema: Schema = new Schema({
   surat_nomor_akta_notaris: {
     type: String,
   },
+  surat_keterangan_domisili_usaha: {
+    type: String,
+  },
   npwp: {
     type: String,
   },
@@ -56,9 +59,6 @@ const UserDocumentSchema: Schema = new Schema({
   },
 });
 
-const UserDocument = mongoose.model<UserIDocument>(
-  "documents",
-  UserDocumentSchema
-);
+const UserDocument = mongoose.model<UserIDocument>("documents", UserDocumentSchema);
 
 export default UserDocument;
