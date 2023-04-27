@@ -68,7 +68,17 @@ const charecterScoringMulter = uploadImage.fields([
     maxCount: 1,
   },
 ]);
-
+const capabilityScoringMulter = uploadImage.fields([
+  ...commonMulterFields,
+  {
+    name: "form_credit_applicant",
+    maxCount: 1,
+  },
+  {
+    name: "surat_laporan_keuangan",
+    maxCount: 1,
+  },
+]);
 router.post(
   `${prefix}/identity-scoring`,
   identityScoringMulter,
@@ -84,6 +94,12 @@ router.put(
 router.post(
   `${prefix}/character-scoring/:id`,
   charecterScoringMulter,
+  userController.createCharacterScoringDocs,
+);
+
+router.post(
+  `${prefix}/capability-scoring/:id`,
+  capabilityScoringMulter,
   userController.createCharacterScoringDocs,
 );
 

@@ -37,6 +37,17 @@ class UserController {
     },
   );
 
+  public createCapabilityScoring = expressAsyncHandler(
+    async (req: Request<{ id: string }>, res: Response) => {
+      req.files = req.files as {
+        [fieldname: string]: Express.Multer.File[];
+      };
+
+      const response = await createCharacterScoringDocs(req.params.id, req.files);
+      res.status(response.code).json(response);
+    },
+  );
+
   public deleteUser = expressAsyncHandler(async (req: Request<{ id: string }>, res: Response) => {
     const response = await deleteUser(req.params.id);
     res.status(response.code).json(response);
