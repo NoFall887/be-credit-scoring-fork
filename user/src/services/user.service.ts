@@ -9,12 +9,19 @@ const createUser = async (files: IdentityScoringDocsInt): Promise<ApiResponseInt
   const user = await User.create();
   const userId = user[0].id as string;
   const imageUrls = await uploadMultiple(files, userId, "user");
-  await UserDocument.create({
+  const createdDocuments = await UserDocument.create({
     user_id: userId,
     ...imageUrls,
   });
 
-  return apiResponse(status.OK, "SUCCESS", "User created!");
+  return apiResponse(status.OK, "SUCCESS", "User created!", createdDocuments);
 };
 
-export { createUser };
+const deleteUser = async (userId: string): Promise<ApiResponseInterface> => {
+  await UserDocument.deleteOne({ user_id: userId });
+  await User.deleteOne({ id: userId });
+
+  return apiResponse(status.OK, "SUCCESS", "User deleted!");
+};
+
+export { createUser, deleteUser };

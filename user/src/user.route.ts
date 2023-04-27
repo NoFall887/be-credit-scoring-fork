@@ -9,7 +9,7 @@ const router = express.Router();
 const prefix = "/user";
 
 // multer middlewares
-const identityScoringMulter = uploadImage.fields([
+const commonMulterFields = [
   {
     name: "ktp",
     maxCount: 1,
@@ -42,6 +42,31 @@ const identityScoringMulter = uploadImage.fields([
     name: "surat_tanda_daftar_perusahaan",
     maxCount: 1,
   },
+];
+
+const identityScoringMulter = uploadImage.fields(commonMulterFields);
+const charecterScoringMulter = uploadImage.fields([
+  ...commonMulterFields,
+  {
+    name: "surat_laporan_keuangan",
+    maxCount: 1,
+  },
+  {
+    name: "form_credit_applicant",
+    maxCount: 1,
+  },
+  {
+    name: "surat_kepemilikian_kendaraan",
+    maxCount: 1,
+  },
+  {
+    name: "nota_kepemilikan_rumah",
+    maxCount: 1,
+  },
+  {
+    name: "nota_kepemilikan_saham",
+    maxCount: 1,
+  },
 ]);
 
 router.post(
@@ -55,5 +80,13 @@ router.put(
   identityScoringMulter,
   userController.updateDocumentIdentityScoring,
 );
+
+router.post(
+  `${prefix}/character-scoring/:id`,
+  charecterScoringMulter,
+  userController.createCharacterScoringDocs,
+);
+
+router.delete(`${prefix}/:id`, identityScoringMulter, userController.deleteUser);
 
 export { router as UserRouter };
