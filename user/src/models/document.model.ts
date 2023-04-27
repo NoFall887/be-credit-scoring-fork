@@ -18,7 +18,8 @@ interface UserIDocument extends Document {
 
 const UserDocumentSchema: Schema = new Schema({
   user_id: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "users",
     required: true,
   },
   ktp: {
@@ -54,10 +55,10 @@ const UserDocumentSchema: Schema = new Schema({
   surat_kepemilikian_kendaraan: {
     type: String,
   },
-  nota_kepemilikan_rumah: {
+  nota_kepemilikan_saham: {
     type: String,
   },
-  nota_kepemilikan_saham: {
+  nota_kepemilikan_rumah: {
     type: String,
   },
 });

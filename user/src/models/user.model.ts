@@ -7,6 +7,12 @@ interface IUser extends Document {
 const UserSchema: Schema = new Schema({
   name: {
     type: String,
+    required: true,
+  },
+  document_id: {
+    type: Schema.Types.ObjectId,
+    ref: "documents",
+    required: true,
   },
 });
 

@@ -3,8 +3,24 @@ import expressAsyncHandler from "express-async-handler";
 
 import chooseFeatures from "./services/chooseFeature.service";
 import proceedRequest from "./services/proceedRequest.service";
+import {
+  getAllFeature,
+  getFeatureForQuota,
+} from "./services/getFeature.service";
 
 class RequestController {
+  public getAllFeature = expressAsyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const requestServiceResponse = await getAllFeature();
+      res.status(requestServiceResponse.code).json(requestServiceResponse);
+    }
+  );
+  public getFeatureForQuota = expressAsyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+      const requestServiceResponse = await getFeatureForQuota();
+      res.status(requestServiceResponse.code).json(requestServiceResponse);
+    }
+  );
   public chooseFeatures = expressAsyncHandler(
     async (req: Request, res: Response): Promise<void> => {
       const selectedFeatures = req.body.selectedFeatures;

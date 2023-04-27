@@ -12,7 +12,7 @@ import {
   isEmpty,
 } from "common-credit-scoring";
 import { LoginUserDto } from "../dtos/auth.dto";
-import PasswordHasher from "../utils/passwordHasher.util";
+import { comparePassword } from "../utils/passwordHasher.util";
 
 const signin = async (
   userData: LoginUserDto,
@@ -28,10 +28,7 @@ const signin = async (
   const userRole = await AdminRole.findOne({ admin_id: findUser.id });
   if (!userRole) throw new HttpExceptionNotFound("User role not found");
 
-  const isMatch = await PasswordHasher.comparePassword(
-    userData.password,
-    findUser.password
-  );
+  const isMatch = await comparePassword(userData.password, findUser.password);
   if (!isMatch) throw new HttpExceptionForbidden("Password does not match");
 
   // Generate JWT
