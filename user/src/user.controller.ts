@@ -1,5 +1,8 @@
 import { createUser, deleteUser } from "./services/user.service";
-import { IdentityScoringDocsInt, IdentityScoringDocsUrlsInt } from "./../interfaces/user.interface";
+import {
+  IdentityScoringDocsInt,
+  // IdentityScoringDocsUrlsInt
+} from "./../interfaces/user.interface";
 import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { updateIdentityScoringDocs } from "services/identityScoring.service";

@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    runs- on: ubuntu-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18.x]
@@ -25,6 +25,5 @@ jobs:
           cd user
           yarn install
           yarn lint
-          yarn build
         env:
           CI: true

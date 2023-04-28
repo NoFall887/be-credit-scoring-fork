@@ -1,5 +1,5 @@
 import express from "express";
-import { authenticate, validationMiddleware } from "common-credit-scoring";
+import { authenticate } from "common-credit-scoring";
 import QuotaController from "./quota.controller";
 
 const quotaC = new QuotaController();

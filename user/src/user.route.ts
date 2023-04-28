@@ -1,6 +1,6 @@
 import { uploadImage } from "./../middleware/multerUpload.middleware";
 import express from "express";
-import { authenticate, authorize, validationMiddleware } from "common-credit-scoring";
+// import { authenticate, authorize, validationMiddleware } from "common-credit-scoring";
 import UserController from "./user.controller";
 
 const userController = new UserController();

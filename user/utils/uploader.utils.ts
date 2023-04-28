@@ -1,6 +1,6 @@
 import { HttpExceptionBadRequest } from "common-credit-scoring";
 import { v4 as uuidv4 } from "uuid";
-import { Multer } from "multer";
+// import { Multer } from "multer";
 import cloudinary from "./cloudinary.utils";
 import _ from "lodash";
 

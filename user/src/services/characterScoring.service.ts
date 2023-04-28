@@ -16,7 +16,7 @@ const createCharacterScoringDocs = async (
   const imagesToUpdate = {};
   const imagesToUpdatePublicKey: string[] = [];
 
-  for (let [key, value] of Object.entries(files)) {
+  for (const [key, value] of Object.entries(files)) {
     if (value[0].size > 0) {
       imagesToUpdate[key] = value;
       imagesToUpdatePublicKey.push(extractPublicId(foundDocument[key]));

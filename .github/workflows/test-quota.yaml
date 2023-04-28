@@ -1,4 +1,4 @@
-name: test-request
+name: test-quota
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: yarn install and lint test
         run: |
-          cd request
+          cd quota
           yarn install
           yarn lint
         env:

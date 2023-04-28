@@ -1,4 +1,4 @@
-import { ApiResponseInterface, HttpExceptionBadRequest, apiResponse } from "common-credit-scoring";
+import { ApiResponseInterface, apiResponse } from "common-credit-scoring";
 import { StatusCodes as status } from "http-status-codes";
 import UserDocument from "models/document.model";
 import { uploadMultiple } from "../../utils/uploader.utils";
@@ -16,7 +16,7 @@ const updateCapabilityScoringDocs = async (
   const imagesToUpdate = {};
   const imagesToUpdatePublicKey: string[] = [];
 
-  for (let [key, value] of Object.entries(files)) {
+  for (const [key, value] of Object.entries(files)) {
     if (value[0].size > 0) {
       imagesToUpdate[key] = value;
       imagesToUpdatePublicKey.push(extractPublicId(foundDocument[key]));

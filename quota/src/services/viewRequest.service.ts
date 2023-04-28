@@ -2,9 +2,9 @@ import Quota from "../models/quota.model";
 import { StatusCodes as status } from "http-status-codes";
 import {
   ApiResponseInterface,
-  HttpExceptionBadRequest,
+  // HttpExceptionBadRequest,
   apiResponse,
-  isEmpty,
+  // isEmpty,
 } from "common-credit-scoring";
 
 const viewRequest = async (): Promise<ApiResponseInterface> => {
@@ -14,12 +14,7 @@ const viewRequest = async (): Promise<ApiResponseInterface> => {
 
   const requests = await Quota.find();
 
-  return apiResponse(
-    status.OK,
-    "SUCCESS",
-    "Success get all quota requests",
-    requests
-  );
+  return apiResponse(status.OK, "SUCCESS", "Success get all quota requests", requests);
 };
 
 export default viewRequest;

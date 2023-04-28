@@ -1,4 +1,4 @@
-import { Document, Model, Query } from "mongoose";
+import { Document, Model } from "mongoose";
 
 interface QueryOptions {
   start_date?: Date;
@@ -8,10 +8,7 @@ interface QueryOptions {
   request_number?: string;
 }
 
-export function applyQueryFilters<T extends Document>(
-  model: Model<T>,
-  options: QueryOptions
-) {
+export function applyQueryFilters<T extends Document>(model: Model<T>, options: QueryOptions) {
   let query = model.find();
 
   if (options.start_date && options.end_date) {
