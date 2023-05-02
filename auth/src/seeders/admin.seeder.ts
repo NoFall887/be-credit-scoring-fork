@@ -32,6 +32,27 @@ const usersData = [
 
 // Seed the Role data to the database
 export const adminSeeder = async () => {
+  const usersData = [
+    {
+      _id: new mongoose.Types.ObjectId("644667cdc80389bc14956b01"),
+      name: "ADMIN",
+      email: "admin@email.com",
+      password: await hashPassword("12345678"),
+    },
+    {
+      _id: new mongoose.Types.ObjectId("644667cdc80389bc14956b02"),
+      name: "HR",
+      email: "hr@email.com",
+      password: await hashPassword("12345678"),
+    },
+    {
+      _id: new mongoose.Types.ObjectId("644667cdc80389bc14956b03"),
+      name: "GUEST",
+      email: "guest@email.com",
+      password: await hashPassword("12345678"),
+    },
+  ];
+
   try {
     const user = await Admin.findOne({ name: "ADMIN" });
     if (user) {

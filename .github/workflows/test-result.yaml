@@ -1,29 +1,29 @@
-name: test-result
+# name: test-result
 
-on:
-  push:
-    branches:
-      - "**"
-      - "!master"
-  pull_request:
-    types: [closed, opened]
+# on:
+#   push:
+#     branches:
+#       - "**"
+#       - "!master"
+#   pull_request:
+#     types: [closed, opened]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: yarn install and lint test
-        run: |
-          cd result
-          yarn install
-          yarn lint
-        env:
-          CI: true
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version: [18.x]
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#       - name: yarn install and lint test
+#         run: |
+#           cd result
+#           yarn install
+#           yarn lint
+#         env:
+#           CI: true

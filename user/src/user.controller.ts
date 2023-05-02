@@ -5,8 +5,8 @@ import {
 } from "./../interfaces/user.interface";
 import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
-import { updateIdentityScoringDocs } from "services/identityScoring.service";
-import { createCharacterScoringDocs } from "services/characterScoring.service";
+import { updateIdentityScoringDocs } from "./services/identityScoring.service";
+import { createCharacterScoringDocs } from "./services/characterScoring.service";
 
 class UserController {
   public documentIdentityScoring = expressAsyncHandler(async (req: Request, res: Response) => {

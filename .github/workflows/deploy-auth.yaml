@@ -1,0 +1,27 @@
+name: deploy-auth
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - "auth/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: cd auth && docker build -t credit-scoring/auth .
+      - run: docker push credit-scoring/auth
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: "credit-scoring-384712"
+          service_account_email: ${{ secrets.GCLOUD_AUTH_EMAIL }}
+          service_account_key: ${{ secrets.GCLOUD_AUTH_KEY }}
+      - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
+      - run: kubectl rollout restart deployment auth-depl

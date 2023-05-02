@@ -1,0 +1,22 @@
+name: deploy-manifests
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - "infra/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: google-github-actions/setup-gcloud@v0.4.5
+        with:
+          project_id: credit-scoring-384712
+          service_account_email: ${{ secrets.GCLOUD_AUTH_EMAIL }}
+          service_account_key: ${{ secrets.GCLOUD_AUTH_KEY }}
+          export_default_credentials: true
+      - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
+      - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod

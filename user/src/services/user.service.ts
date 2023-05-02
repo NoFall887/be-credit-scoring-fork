@@ -1,7 +1,7 @@
-import User from "models/user.model";
+import User from "../models/user.model";
 import { StatusCodes as status } from "http-status-codes";
 import { ApiResponseInterface, apiResponse } from "common-credit-scoring";
-import UserDocument from "models/document.model";
+import UserDocument from "../models/document.model";
 import { IdentityScoringDocsInt } from "../../interfaces/user.interface";
 import { uploadMultiple } from "../../utils/uploader.utils";
 

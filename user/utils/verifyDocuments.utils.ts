@@ -1,4 +1,4 @@
-import { HttpExceptionBadRequest } from "./../../common/src/utils/httpExceptions.utils";
+import { HttpExceptionBadRequest } from "common-credit-scoring";
 import UserDocument from "../src/models/document.model";
 
 export default async function verifyDocument(userId: string) {
