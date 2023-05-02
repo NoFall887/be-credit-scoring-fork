@@ -100,8 +100,10 @@ router.post(
 router.post(
   `${prefix}/capability-scoring/:id`,
   capabilityScoringMulter,
-  userController.createCharacterScoringDocs,
+  userController.createCapabilityScoring,
 );
+
+router.get(`${prefix}/documents/:id`, userController.getDocuments);
 
 router.delete(`${prefix}/:id`, identityScoringMulter, userController.deleteUser);
 

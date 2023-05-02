@@ -1,12 +1,13 @@
-import { createUser, deleteUser } from "./services/user.service";
 import {
-  IdentityScoringDocsInt,
-  // IdentityScoringDocsUrlsInt
-} from "./../interfaces/user.interface";
+  createCharacterScoringDocs,
+  createCapabilityScoringDocs,
+  updateIdentityScoringDocs,
+  getDocuments,
+} from "./services/document.service";
+import { createUser, deleteUser } from "./services/user.service";
+import { IdentityScoringDocsInt } from "./../interfaces/user.interface";
 import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
-import { updateIdentityScoringDocs } from "./services/identityScoring.service";
-import { createCharacterScoringDocs } from "./services/characterScoring.service";
 
 class UserController {
   public documentIdentityScoring = expressAsyncHandler(async (req: Request, res: Response) => {
@@ -46,13 +47,18 @@ class UserController {
         [fieldname: string]: Express.Multer.File[];
       };
 
-      const response = await createCharacterScoringDocs(req.params.id, req.files);
+      const response = await createCapabilityScoringDocs(req.params.id, req.files);
       res.status(response.code).json(response);
     },
   );
 
   public deleteUser = expressAsyncHandler(async (req: Request<{ id: string }>, res: Response) => {
     const response = await deleteUser(req.params.id);
+    res.status(response.code).json(response);
+  });
+
+  public getDocuments = expressAsyncHandler(async (req: Request<{ id: string }>, res: Response) => {
+    const response = await getDocuments(req.params.id);
     res.status(response.code).json(response);
   });
 }
