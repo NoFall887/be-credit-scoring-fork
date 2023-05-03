@@ -6,6 +6,11 @@ on:
       - dev
     paths:
       - "auth/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "auth/**"
 
 jobs:
   build:
