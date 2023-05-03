@@ -1,5 +1,5 @@
 import { HttpExceptionBadRequest } from "common-credit-scoring";
-import UserDocument from "../src/models/document.model";
+import UserDocument from "../models/document.model";
 
 export default async function verifyDocument(userId: string) {
   const foundDocument = await UserDocument.findOne({ user_id: userId }).exec();

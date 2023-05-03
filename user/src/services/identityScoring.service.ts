@@ -1,10 +1,10 @@
 import { ApiResponseInterface, apiResponse } from "common-credit-scoring";
 import { StatusCodes as status } from "http-status-codes";
 import UserDocument from "../models/document.model";
-import { uploadMultiple } from "../../utils/uploader.utils";
-import cloudinary from "../../utils/cloudinary.utils";
+import { uploadMultiple } from "../utils/uploader.utils";
+import cloudinary from "../utils/cloudinary.utils";
 import { extractPublicId } from "cloudinary-build-url";
-import verifyDocument from "../../utils/verifyDocuments.utils";
+import verifyDocument from "../utils/verifyDocuments.utils";
 
 const updateIdentityScoringDocs = async (
   userId: string,
