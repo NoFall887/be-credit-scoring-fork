@@ -1,10 +1,10 @@
 import { ApiResponseInterface, apiResponse } from "common-credit-scoring";
 import { StatusCodes as status } from "http-status-codes";
 import UserDocument from "models/document.model";
-import { uploadMultiple } from "../../utils/uploader.utils";
-import cloudinary from "../../utils/cloudinary.utils";
+import { uploadMultiple } from "../utils/uploader.utils";
+import cloudinary from "../utils/cloudinary.utils";
 import { extractPublicId } from "cloudinary-build-url";
-import verifyDocument from "../../utils/verifyDocuments.utils";
+import verifyDocument from "../utils/verifyDocuments.utils";
 
 const createCapabilityScoringDocs = async (
   userId: string,
@@ -16,7 +16,7 @@ const createCapabilityScoringDocs = async (
   const imagesToUpdate = {};
   const imagesToUpdatePublicKey: string[] = [];
 
-  for (let [key, value] of Object.entries(files)) {
+  for (const [key, value] of Object.entries(files)) {
     if (value[0].size > 0) {
       imagesToUpdate[key] = value;
       imagesToUpdatePublicKey.push(extractPublicId(foundDocument[key]));
@@ -47,7 +47,7 @@ const createCharacterScoringDocs = async (
   const imagesToUpdate = {};
   const imagesToUpdatePublicKey: string[] = [];
 
-  for (let [key, value] of Object.entries(files)) {
+  for (const [key, value] of Object.entries(files)) {
     if (value[0].size > 0) {
       imagesToUpdate[key] = value;
       imagesToUpdatePublicKey.push(extractPublicId(foundDocument[key]));
@@ -78,7 +78,7 @@ const updateIdentityScoringDocs = async (
   const imagesToUpdate = {};
   const imagesToUpdatePublicKey: string[] = [];
 
-  for (let [key, value] of Object.entries(files)) {
+  for (const [key, value] of Object.entries(files)) {
     if (value[0].size > 0) {
       imagesToUpdate[key] = value;
       imagesToUpdatePublicKey.push(extractPublicId(foundDocument[key]));

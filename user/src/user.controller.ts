@@ -5,7 +5,7 @@ import {
   getDocuments,
 } from "./services/document.service";
 import { createUser, deleteUser } from "./services/user.service";
-import { IdentityScoringDocsInt } from "./../interfaces/user.interface";
+import { IdentityScoringDocsInt } from "./interfaces/user.interface";
 import { Request, Response } from "express";
 import expressAsyncHandler from "express-async-handler";
 
