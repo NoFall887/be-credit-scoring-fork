@@ -18,7 +18,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: cd auth && docker build -t credit-scoring/auth .
       - run: docker push credit-scoring/auth
-      - uses: google-github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
           project_id: "credit-scoring-384712"
           service_account_email: ${{ secrets.GCLOUD_AUTH_EMAIL }}
