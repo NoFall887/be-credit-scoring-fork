@@ -17,23 +17,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Login Docker
         uses: actions/checkout@v2
-        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        run: docker images
+      - run: docker images
 
-      - name: Build and Push Docker
-        run: cd auth && docker build -t fathonizkr/auth .
-        run: docker push fathonizkr/auth
+      - run: cd auth && docker build -t fathonizkr/auth .
+      - run: docker push fathonizkr/auth
 
-      - name: Deploy to GKE
-        uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
+      - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
           project_id: "credit-scoring-384712"
           service_account_email: ${{ secrets.GCLOUD_AUTH_EMAIL }}
           service_account_key: ${{ secrets.GCLOUD_AUTH_KEY }}
-        run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
-        run: kubectl rollout restart deployment auth-depl
+      - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
+      - run: kubectl rollout restart deployment auth-depl
