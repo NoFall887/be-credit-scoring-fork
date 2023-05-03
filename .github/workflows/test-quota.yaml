@@ -1,4 +1,4 @@
-name: test-auth
+name: test-quota
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: yarn install and lint test
         run: |
-          cd auth
+          cd quota
           yarn install
           yarn lint
           yarn build

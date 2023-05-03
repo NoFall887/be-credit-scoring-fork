@@ -3,14 +3,15 @@ name: deploy-manifests
 on:
   push:
     branches:
-      - dev
+      - "dev"
+      - "**"
     paths:
       - "infra/**"
   pull_request:
     branches:
-      - main
+      - "main"
     paths:
-      - "auth/**"
+      - "infra/**"
 
 jobs:
   build:

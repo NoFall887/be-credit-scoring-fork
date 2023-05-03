@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev src/index.ts ",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix src/**/*.ts",
+    "format": "prettier --write src/**/*.ts --config ./.prettierrc",
+    "build": "tsc --build --force "
   },
   "keywords": [],
   "author": "",
