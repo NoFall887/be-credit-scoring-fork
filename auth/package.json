@@ -8,7 +8,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix src/**/*.ts",
     "format": "prettier --write src/**/*.ts --config ./.prettierrc",
-    "prepare": "husky install",
     "build": "tsc --build --force "
   },
   "keywords": [],
