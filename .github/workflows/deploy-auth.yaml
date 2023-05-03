@@ -32,5 +32,7 @@ jobs:
           project_id: "credit-scoring-384712"
           service_account_email: ${{ secrets.GCLOUD_AUTH_EMAIL }}
           service_account_key: ${{ secrets.GCLOUD_AUTH_KEY }}
+
+      - run: gcloud --quiet auth configure-docker
       - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
       - run: kubectl rollout restart deployment auth-depl
