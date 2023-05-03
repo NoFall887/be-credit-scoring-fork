@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix src/**/*.ts",
     "format": "prettier --write src/**/*.ts --config ./.prettierrc",
-    "build": " tsc --build --force "
+    "build": "tsc --build --force "
   },
   "keywords": [],
   "author": "",
