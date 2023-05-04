@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: request
-          image: credit-scoring/request
+          image: fathonizkr/request
           env:
             - name: MONGO_URI
               value: "mongodb+srv://credit-scoring-admin:admin@cluster-backend.gp6s4fc.mongodb.net/credit-scoring"
