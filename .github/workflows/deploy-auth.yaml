@@ -27,6 +27,8 @@ jobs:
       - run: cd auth && docker build -t fathonizkr/auth .
       - run: docker push fathonizkr/auth
 
+      - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
+
       - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
           project_id: credit-scoring-384712
@@ -44,5 +46,4 @@ jobs:
           project_id: credit-scoring-384712
           credentials: ${{ secrets.GKE_SA_KEY }}
 
-      - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
       - run: kubectl rollout restart deployment auth-depl
