@@ -39,7 +39,6 @@ jobs:
         with:
           cluster_name: credit-scoring
           location: asia-southeast2
-          credentials: ${{ secrets.GCLOUD_AUTH_KEY }}
           project_id: credit-scoring-384712
 
       - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
