@@ -30,13 +30,11 @@ jobs:
       - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
           project_id: credit-scoring-384712
-          install_components: true
-          skip_install: false
-          version: latest
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
       - run: gcloud --quiet auth configure-docker
+      - run: gcloud components install kubectl
 
       - uses: google-github-actions/get-gke-credentials@db150f2cc60d1716e61922b832eae71d2a45938f
         with:
