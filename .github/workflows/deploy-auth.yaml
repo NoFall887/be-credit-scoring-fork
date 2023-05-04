@@ -30,8 +30,11 @@ jobs:
       - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
           project_id: credit-scoring-384712
-          service_account_email: ${{ secrets.GCLOUD_AUTH_EMAIL }}
-          service_account_key: ${{ secrets.GCLOUD_AUTH_KEY }}
+          install_components: true
+          skip_install: false
+          version: latest
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
       - run: gcloud --quiet auth configure-docker
 
