@@ -23,27 +23,10 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: docker images
-
       - run: cd auth && docker build -t fathonizkr/auth .
       - run: docker push fathonizkr/auth
-
-      - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
-
-      - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
+      - uses: digitalocean/action-doctl@v2
         with:
-          project_id: credit-scoring-384712
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-
-      - run: gcloud --quiet auth configure-docker
-      - run: gcloud components install kubectl
-
-      - uses: google-github-actions/get-gke-credentials@db150f2cc60d1716e61922b832eae71d2a45938f
-        with:
-          cluster_name: credit-scoring
-          location: asia-southeast2
-          project_id: credit-scoring-384712
-          credentials: ${{ secrets.GKE_SA_KEY }}
-
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save credit-scoring
       - run: kubectl rollout restart deployment auth-depl
