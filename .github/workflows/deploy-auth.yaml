@@ -30,6 +30,7 @@ jobs:
       - uses: google-github-actions/setup-gcloud@1bee7de035d65ec5da40a31f8589e240eba8fde5
         with:
           project_id: credit-scoring-384712
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
@@ -41,6 +42,7 @@ jobs:
           cluster_name: credit-scoring
           location: asia-southeast2
           project_id: credit-scoring-384712
+          credentials: ${{ secrets.GKE_SA_KEY }}
 
       - run: gcloud container clusters get-credentials credit-scoring --region asia-southeast2 --project credit-scoring-384712
       - run: kubectl rollout restart deployment auth-depl
