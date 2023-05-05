@@ -9,10 +9,10 @@ const app = express();
 app.set("trust proxy", true);
 app.use(json());
 app.use(
-    cookieSession({
-        signed: false,
-        secure: process.env.NODE_ENV !== "test",
-    })
+  cookieSession({
+    signed: false,
+    secure: process.env.NODE_ENV !== "test",
+  }),
 );
 
 // // Middleware untuk akses ke session dalam request
@@ -24,15 +24,15 @@ app.use(
 app.use("/api/auth", AuthRouter);
 
 app.get("/api/auth", (req, res) => {
-    res.status(200).json({
-        code: 200,
-        status: "OK",
-        message: "welcome to credit scoring auth api",
-    });
+  res.status(200).json({
+    code: 200,
+    status: "OK",
+    message: "welcome to credit scoring auth api",
+  });
 });
 
-app.all("*", async () => {
-    throw new HttpExceptionNotFound("Could not find from this resource");
+app.use(async () => {
+  throw new HttpExceptionNotFound("Could not find from this resource");
 });
 
 app.use(errorHandler);

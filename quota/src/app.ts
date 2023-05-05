@@ -12,7 +12,7 @@ app.use(
   cookieSession({
     signed: false,
     secure: process.env.NODE_ENV !== "test",
-  })
+  }),
 );
 
 app.use("/api/quotas", QuotaRouter);
@@ -25,7 +25,7 @@ app.get("/api/quotas", (req, res) => {
   });
 });
 
-app.all("*", async () => {
+app.use(async () => {
   throw new HttpExceptionNotFound("Could not find from this resource");
 });
 

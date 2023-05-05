@@ -12,7 +12,7 @@ app.use(
   cookieSession({
     signed: false,
     secure: process.env.NODE_ENV !== "test",
-  })
+  }),
 );
 
 app.use("/api/ai-scores/request", requestRouter);
@@ -25,7 +25,7 @@ app.get("/api/ai-scores/request", (req, res) => {
   });
 });
 
-app.all("*", async () => {
+app.use(async () => {
   throw new HttpExceptionNotFound("Could not find from this resource");
 });
 

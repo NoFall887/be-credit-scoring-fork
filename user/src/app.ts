@@ -12,7 +12,7 @@ app.use(
   cookieSession({
     signed: false,
     secure: process.env.NODE_ENV !== "test",
-  })
+  }),
 );
 
 app.use("/api/users", UserRouter);
@@ -25,7 +25,7 @@ app.get("/api/users", (req, res) => {
   });
 });
 
-app.all("*", async () => {
+app.use(async () => {
   throw new HttpExceptionNotFound("Could not find from this resource");
 });
 
