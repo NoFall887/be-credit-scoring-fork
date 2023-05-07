@@ -5,6 +5,8 @@ on:
     branches:
       - gcp
       - main
+    paths:
+      - "auth/**"
   pull_request:
     branches:
       - "gcp"
