@@ -48,5 +48,5 @@ jobs:
       # Start ingress controller
       - name: Start ingress controller
         run: |-
-          cd infra/k8s/k8s-dev
+          cd ./infra/k8s
           kubectl apply -f gcp-ingress-srv.yaml
