@@ -16,7 +16,7 @@ env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}}
   GKE_ZONE: asia-southeast2
   GKE_CLUSTER: credit-scoring
-  DEPLOYMENT_NAME: gke-credit-scoring-auth
+  DEPLOYMENT_NAME: auth
   IMAGE: credit-scoring-auth
 
 jobs:
