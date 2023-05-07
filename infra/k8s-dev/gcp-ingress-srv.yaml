@@ -17,24 +17,24 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
-          - path: /api/ai-scores/request/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: request-srv
-                port:
-                  number: 3000
-          - path: /api/users/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: user-srv
-                port:
-                  number: 3000
-          - path: /api/quotas/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: user-srv
-                port:
-                  number: 3000
+          # - path: /api/ai-scores/request/?(.*)
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: request-srv
+          #       port:
+          #         number: 3000
+          # - path: /api/users/?(.*)
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: user-srv
+          #       port:
+          #         number: 3000
+          # - path: /api/quotas/?(.*)
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: user-srv
+          #       port:
+          #         number: 3000
