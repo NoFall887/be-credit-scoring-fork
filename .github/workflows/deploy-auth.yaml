@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - "gcp"
-    paths:
-      - "auth/**"
   pull_request:
     branches:
       - "gcp"
