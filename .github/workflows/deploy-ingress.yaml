@@ -49,4 +49,5 @@ jobs:
       - name: Start ingress controller
         run: |-
           cd ./infra/k8s-dev
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.1/deploy/static/provider/cloud/deploy.yaml
           kubectl apply -f gcp-ingress-srv.yaml
