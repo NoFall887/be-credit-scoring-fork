@@ -17,6 +17,7 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
+
           # - path: /api/ai-scores/request/?(.*)
           #   pathType: Prefix
           #   backend:
