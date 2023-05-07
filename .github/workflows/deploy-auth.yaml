@@ -3,7 +3,7 @@ name: deploy-auth
 on:
   push:
     branches:
-      - "gcp"
+      - gcp
   pull_request:
     branches:
       - "gcp"
