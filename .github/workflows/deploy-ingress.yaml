@@ -1,0 +1,52 @@
+name: deploy-auth
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+env:
+  PROJECT_ID: ${{secrets.GKE_PROJECT}}
+  GKE_ZONE: asia-southeast2
+  GKE_CLUSTER: credit-scoring
+  DEPLOYMENT_NAME: auth-depl
+  IMAGE: credit-scoring-auth
+
+jobs:
+  deploy-load-balancer:
+    name: Start ingress load balancer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # Setup Gcloud CLI
+      - uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GKE_SA_KEY }}
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v1"
+        with:
+          version: ">= 363.0.0"
+
+      # Configure Docker to use the gcloud command-line tool as a credential
+      # helper for authentication
+      - run: |-
+          gcloud --quiet auth configure-docker
+
+      # Get the GKE credentials
+      - uses: google-github-actions/get-gke-credentials@v1
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+          project_id: ${{secrets.GKE_PROJECT_ID}}
+
+      # Start ingress controller
+      - name: Start ingress controller
+        run: |-
+          cd ./infra/k8s/k8s-dev
+          kubectl apply -f gcp-ingress-srv.yaml
