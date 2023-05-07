@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - gcp
+      - main
   pull_request:
     branches:
       - "gcp"
