@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: fathonizkr/auth
+          image: gcr.io/PROJECT_ID/IMAGE:TAG
           env:
             - name: MONGO_URI
               value: "mongodb+srv://credit-scoring-admin:admin@cluster-backend.gp6s4fc.mongodb.net/credit-scoring"
