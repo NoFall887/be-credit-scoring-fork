@@ -49,8 +49,7 @@ jobs:
       - name: Start ingress controller
         run: |-
           cd ./infra/k8s-dev
-          kubectl create clusterrolebinding cluster-admin-binding \
-          --clusterrole cluster-admin \
-          --user $(gcloud config get-value account)
-          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.1/deploy/static/provider/cloud/deploy.yaml
+          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+          helm repo update
+          helm install nginx-ingress ingress-nginx/ingress-nginx
           kubectl apply -f gcp-ingress-srv.yaml
