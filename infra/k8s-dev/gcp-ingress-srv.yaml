@@ -6,12 +6,6 @@ metadata:
     kubernetes.io/ingress.class: "gce"
     nginx.ingress.kubernetes.io/use-regex: "true"
     kubernetes.io/ingress.allow-http: "true"
-spec:
-  defaultBackend:
-    service:
-      name: web
-      port:
-        number: 80
   rules:
     - http:
         paths:
