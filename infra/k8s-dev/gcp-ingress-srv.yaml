@@ -6,6 +6,7 @@ metadata:
     kubernetes.io/ingress.class: "gce"
     nginx.ingress.kubernetes.io/use-regex: "true"
     kubernetes.io/ingress.allow-http: "true"
+spec:
   rules:
     - http:
         paths:
