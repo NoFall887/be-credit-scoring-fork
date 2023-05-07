@@ -1,0 +1,4 @@
+/src/seeders
+/src/migrations
+/src/helpers
+/src/config/*.js
