@@ -49,5 +49,4 @@ jobs:
       - name: Start ingress controller
         run: |-
           cd ./infra/k8s-dev
-          kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
           kubectl apply -f gcp-ingress-srv.yaml
