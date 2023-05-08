@@ -7,6 +7,10 @@ on:
   pull_request:
     branches:
       - "*"
+  workflow_run:
+    workflows: [deploy-auth]
+    types:
+      - completed
 
 env:
   PROJECT_ID: ${{secrets.GKE_PROJECT}}

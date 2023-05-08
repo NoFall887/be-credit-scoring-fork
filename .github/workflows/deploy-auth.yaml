@@ -23,7 +23,7 @@ env:
   IMAGE: credit-scoring-auth
 
 jobs:
-  setup-build-publish-deploy:
+  deploy-auth:
     name: Deploy to GKE
     runs-on: ubuntu-latest
     steps:
