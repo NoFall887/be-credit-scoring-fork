@@ -25,6 +25,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: auth-srv
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {
+    "auth":"auth-config"
+    }}'
 spec:
   type: NodePort
   selector:
